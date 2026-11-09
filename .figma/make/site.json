@@ -1,0 +1,10 @@
+{
+  "description": "A university LMS for students and instructors to manage courses, learning materials, assignments, grades, schedules, and class discussions in one organized platform.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
