@@ -1,0 +1,194 @@
+.role-banner {
+  min-height: 160px;
+  border-radius: 15px;
+  padding: 30px 34px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.role-banner:after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  right: -80px;
+  top: -170px;
+  box-shadow: 0 0 0 60px rgba(255, 255, 255, 0.025);
+}
+.instructor-banner {
+  background: #5e1111;
+}
+.admin-banner {
+  background: #282f39;
+}
+.role-banner h1 {
+  font-size: 27px;
+  margin: 7px 0;
+}
+.role-banner p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 11px;
+}
+.role-banner .btn,
+.role-banner .badge {
+  position: relative;
+  z-index: 1;
+}
+.instructor-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 17px;
+  margin-bottom: 17px;
+}
+.instructor-grid > section {
+  padding: 20px;
+}
+.managed-course {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+.course-badge {
+  width: 40px;
+  height: 40px;
+  color: white;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+.managed-course > div:nth-child(2) {
+  flex: 1;
+}
+.managed-course span,
+.managed-course strong,
+.managed-course small {
+  display: block;
+}
+.managed-course span {
+  color: var(--maroon);
+  font-size: 7px;
+  font-weight: 700;
+}
+.managed-course strong {
+  font-size: 10px;
+  margin: 3px 0;
+}
+.managed-course small {
+  font-size: 8px;
+  color: #999;
+}
+.review-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+.review-row > div {
+  flex: 1;
+}
+.review-row strong,
+.review-row span {
+  display: block;
+}
+.review-row strong {
+  font-size: 10px;
+}
+.review-row span {
+  color: #999;
+  font-size: 8px;
+  margin: 4px 0 7px;
+}
+.quick-actions > div:last-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 15px;
+}
+.quick-actions > div:last-child button {
+  border: 1px solid var(--line);
+  background: #fafafa;
+  border-radius: 9px;
+  padding: 12px;
+  display: flex;
+  text-align: left;
+  gap: 9px;
+  color: var(--maroon);
+}
+.quick-actions button span {
+  color: var(--ink);
+}
+.quick-actions button strong,
+.quick-actions button small {
+  display: block;
+}
+.quick-actions button strong {
+  font-size: 10px;
+}
+.quick-actions button small {
+  color: #999;
+  font-size: 7px;
+  margin-top: 3px;
+}
+.pulse-score {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 18px 0 10px;
+}
+.pulse-score > strong {
+  font-size: 31px;
+}
+.pulse-score span,
+.pulse-score small {
+  display: block;
+}
+.pulse-score span {
+  font-size: 10px;
+}
+.pulse-score small {
+  color: var(--green);
+  font-size: 8px;
+  margin-top: 3px;
+}
+.pulse-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 18px;
+}
+.pulse-metrics span {
+  font-size: 8px;
+  color: #999;
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+.pulse-metrics span:last-child {
+  border: 0;
+}
+.pulse-metrics strong {
+  display: block;
+  color: var(--ink);
+  font-size: 16px;
+}
+.success-toast {
+  padding: 11px 15px;
+  background: #e9f6f0;
+  color: var(--green);
+  border: 1px solid #cce9dc;
+  border-radius: 9px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 10px;
+  margin-bottom: 15px;
+}
+.small-zone {
+  height: 110px !important;
+}

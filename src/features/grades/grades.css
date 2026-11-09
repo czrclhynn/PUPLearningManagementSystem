@@ -1,0 +1,75 @@
+.grade-overview {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 17px;
+  margin-bottom: 17px;
+}
+.grade-hero {
+  padding: 22px;
+  background: var(--maroon-dark);
+  color: white;
+}
+.grade-hero > span {
+  color: #e4c279;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+.grade-hero > div {
+  margin: 12px 0;
+}
+.grade-hero > div strong,
+.grade-hero > div small {
+  display: block;
+}
+.grade-hero > div strong {
+  font-size: 38px;
+}
+.grade-hero > div small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 9px;
+}
+.grade-hero p {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 8px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
+.grade-bars {
+  padding: 19px;
+}
+.grade-bar {
+  display: grid;
+  grid-template-columns: 75px 1fr 30px;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0;
+  font-size: 9px;
+}
+.gradebook {
+  overflow: hidden;
+}
+.gradebook > .section-head {
+  padding: 18px;
+}
+.table-head.grades,
+.grade-row {
+  grid-template-columns: 2fr repeat(4, 1fr);
+}
+.grade-row {
+  display: grid;
+  gap: 15px;
+  padding: 14px 18px;
+  border-top: 1px solid #eee;
+  font-size: 10px;
+  align-items: center;
+}
+.grade-row strong,
+.grade-row small {
+  display: block;
+}
+.grade-row small {
+  color: #999;
+  font-size: 8px;
+  margin-top: 3px;
+}

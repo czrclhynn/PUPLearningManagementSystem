@@ -1,0 +1,125 @@
+.page-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 4px 0 25px;
+  gap: 20px;
+}
+.page-heading h1 {
+  font-size: 28px;
+  margin: 5px 0;
+}
+.page-heading p {
+  color: var(--muted);
+  font-size: 12px;
+}
+.term-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 12px 15px;
+  border-radius: 10px;
+  color: var(--maroon);
+}
+.term-card span,
+.term-card strong {
+  display: block;
+}
+.term-card span {
+  color: var(--muted);
+  font-size: 8px;
+}
+.term-card strong {
+  color: var(--ink);
+  font-size: 10px;
+  margin-top: 2px;
+}
+.toolbar {
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.search-field {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #dedfe2;
+  border-radius: 8px;
+  padding: 0 11px;
+  color: #999;
+  background: white;
+  flex: 1;
+}
+.toolbar select,
+.page-heading select,
+select {
+  height: 40px;
+  border: 1px solid #dedfe2;
+  border-radius: 8px;
+  padding: 0 30px 0 11px;
+  background: white;
+  font-size: 11px;
+  outline: 0;
+}
+.view-toggle,
+.view-pills {
+  display: flex;
+  background: #f2f2f3;
+  padding: 3px;
+  border-radius: 8px;
+}
+.view-toggle button,
+.view-pills button {
+  height: 32px;
+  min-width: 34px;
+  border: 0;
+  background: transparent;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  color: #888;
+}
+.view-toggle button.active,
+.view-pills button.active {
+  background: white;
+  color: var(--maroon);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid var(--line);
+  margin: 20px 0 17px;
+}
+.tabs button {
+  border: 0;
+  background: transparent;
+  color: #777;
+  height: 40px;
+  font-size: 12px;
+  position: relative;
+}
+.tabs button.active {
+  color: var(--maroon);
+  font-weight: 700;
+}
+.tabs button.active:after {
+  content: "";
+  height: 2px;
+  background: var(--maroon);
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+}
+.tabs button span {
+  margin-left: 5px;
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 8px;
+}

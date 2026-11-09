@@ -1,0 +1,42 @@
+export const activities = [
+  {
+    title: "Data Preparation Exercise",
+    course: "COMP 034",
+    type: "Assignment",
+    due: "Today, 11:59 PM",
+    points: 50,
+    status: "Pending",
+  },
+  {
+    title: "Normalization Quiz",
+    course: "COMP 018",
+    type: "Quiz",
+    due: "Tomorrow, 3:00 PM",
+    points: 20,
+    status: "Pending",
+  },
+  {
+    title: "Research Problem Draft",
+    course: "COMP 015",
+    type: "Project",
+    due: "May 26, 5:00 PM",
+    points: 100,
+    status: "Submitted",
+  },
+  {
+    title: "Binary Trees Lab",
+    course: "COMP 023",
+    type: "Assignment",
+    due: "May 28, 11:59 PM",
+    points: 60,
+    status: "Pending",
+  },
+  {
+    title: "Midterm Reflection",
+    course: "GEED 008",
+    type: "Essay",
+    due: "May 18, 11:59 PM",
+    points: 30,
+    status: "Graded",
+  },
+];

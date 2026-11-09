@@ -1,0 +1,27 @@
+:root {
+  --maroon: #800000;
+  --maroon-dark: #570000;
+  --maroon-soft: #f7eeee;
+  --gold: #d9a441;
+  --ink: #242424;
+  --muted: #737373;
+  --line: #e6e7e9;
+  --surface: #ffffff;
+  --canvas: #f5f6f8;
+  --green: #23865b;
+  --amber: #d99a27;
+  --red: #d9534f;
+  --blue: #376fa6;
+}
+
+@theme inline {
+  --color-brand: var(--maroon);
+  --color-brand-dark: var(--maroon-dark);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--line);
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+}

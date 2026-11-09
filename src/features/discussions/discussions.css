@@ -1,0 +1,172 @@
+.discussion-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 17px;
+}
+.discussion-tools {
+  margin-bottom: 12px;
+}
+.discussion-card {
+  padding: 19px;
+  margin-bottom: 12px;
+}
+.pinned-label {
+  color: #936612;
+  font-size: 7px;
+  font-weight: 700;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 11px;
+}
+.discussion-author {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.discussion-author > div:nth-child(2) {
+  flex: 1;
+}
+.discussion-author strong,
+.discussion-author span {
+  display: block;
+}
+.discussion-author strong {
+  font-size: 10px;
+}
+.discussion-author strong .badge {
+  margin-left: 6px;
+}
+.discussion-author span {
+  font-size: 8px;
+  color: #999;
+  margin-top: 3px;
+}
+.discussion-card > h2 {
+  font-size: 15px;
+  margin: 15px 0 7px;
+}
+.discussion-card > p {
+  color: #666;
+  font-size: 10px;
+  line-height: 1.55;
+}
+.discussion-footer {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #eee;
+  margin-top: 14px;
+  padding-top: 11px;
+  gap: 16px;
+}
+.discussion-footer button {
+  border: 0;
+  background: white;
+  color: #777;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+}
+.discussion-footer button:last-child {
+  margin-left: auto;
+  color: var(--maroon);
+  font-weight: 700;
+}
+.discussion-aside {
+  padding: 18px;
+  height: max-content;
+}
+.discussion-aside h3 {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.discussion-aside > button:not(.text-btn) {
+  width: 100%;
+  border: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
+  text-align: left;
+}
+.discussion-aside button > span:nth-child(2) {
+  flex: 1;
+}
+.discussion-aside button strong,
+.discussion-aside button small {
+  display: block;
+}
+.discussion-aside button strong {
+  font-size: 9px;
+}
+.discussion-aside button small {
+  font-size: 7px;
+  color: #999;
+  margin-top: 2px;
+}
+.discussion-aside button > i {
+  background: var(--maroon);
+  color: white;
+  border-radius: 7px;
+  font-size: 7px;
+  font-style: normal;
+  padding: 3px 6px;
+}
+.course-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--maroon);
+}
+.course-dot.gold {
+  background: var(--gold);
+}
+.course-dot.green {
+  background: var(--green);
+}
+.course-dot.blue {
+  background: var(--blue);
+}
+.discussion-aside hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 15px 0;
+}
+.discussion-aside p {
+  color: #777;
+  font-size: 9px;
+  line-height: 1.5;
+  margin-bottom: 9px;
+}
+.compose-modal {
+  width: min(570px, 95vw);
+  padding: 24px;
+}
+.compose-modal label {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  margin: 15px 0;
+}
+.compose-modal input,
+.compose-modal select,
+.compose-modal textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+.compose-modal textarea {
+  height: 110px;
+  resize: none;
+}
+.compose-modal > div:last-child {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

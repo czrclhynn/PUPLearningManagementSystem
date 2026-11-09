@@ -1,0 +1,514 @@
+@media (max-width: 1150px) {
+  .sidebar {
+    width: 225px;
+  }
+  .app-main {
+    margin-left: 225px;
+  }
+  .page {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .topbar {
+    padding: 0 22px;
+  }
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .course-grid.preview .course-card:last-child {
+    display: none;
+  }
+  .dashboard-grid,
+  .dashboard-lower {
+    grid-template-columns: 1fr;
+  }
+  .deadlines-card {
+    order: 2;
+  }
+  .course-hero {
+    grid-template-columns: 55px 1fr;
+  }
+  .hero-progress {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  .hero-progress .progress,
+  .hero-progress p {
+    grid-column: 1/-1;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .notes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: 0.25s;
+    width: 260px;
+    box-shadow: 15px 0 40px rgba(0, 0, 0, 0.15);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    border: 0;
+    z-index: 39;
+  }
+  .mobile-close,
+  .menu-button {
+    display: grid;
+  }
+  .app-main {
+    margin-left: 0;
+  }
+  .global-search {
+    display: none;
+  }
+  .topbar-title h2 {
+    font-size: 15px;
+  }
+  .page {
+    padding: 20px 18px 40px;
+  }
+  .welcome-panel {
+    padding: 25px;
+  }
+  .welcome-panel .day-focus {
+    display: none;
+  }
+  .course-overview,
+  .materials-layout,
+  .activity-detail-grid,
+  .calendar-layout,
+  .discussion-layout,
+  .announcement-layout,
+  .planner-layout {
+    grid-template-columns: 1fr;
+  }
+  .materials-aside,
+  .overview-aside,
+  .upcoming-panel,
+  .discussion-aside,
+  .announcement-aside {
+    order: 2;
+  }
+  .course-hero {
+    padding: 24px;
+  }
+  .calendar-grid > div {
+    min-height: 80px;
+    padding: 5px;
+  }
+  .calendar-event {
+    font-size: 0;
+    height: 7px;
+    border: 0;
+    padding: 0;
+  }
+  .notes-layout {
+    grid-template-columns: 1fr;
+  }
+  .subjects-panel {
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+  }
+  .subjects-panel h3 {
+    display: none;
+  }
+  .subjects-panel button {
+    width: auto;
+    min-width: max-content;
+  }
+  .instructor-grid,
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+  .recent-activity {
+    grid-column: auto;
+  }
+  .grade-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+  .login-brand {
+    display: none;
+  }
+  .login-form-side {
+    min-height: 100vh;
+    padding: 28px 22px;
+    align-content: start;
+  }
+  .mobile-logo {
+    display: block;
+    width: 100%;
+    margin-bottom: 70px;
+  }
+  .login-form h2 {
+    font-size: 30px;
+  }
+  .topbar {
+    height: 64px;
+    padding: 0 13px;
+  }
+  .topbar-title > div > span {
+    display: block;
+    font-size: 8px;
+    color: #999;
+  }
+  .profile-trigger > span,
+  .profile-trigger > svg {
+    display: none;
+  }
+  .profile-trigger {
+    padding-left: 10px;
+  }
+  .page {
+    padding: 17px 13px 35px;
+  }
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+  .page-heading h1 {
+    font-size: 24px;
+  }
+  .page-heading > .btn,
+  .page-heading select {
+    width: 100%;
+  }
+  .welcome-panel {
+    min-height: 145px;
+    padding: 22px;
+  }
+  .welcome-panel h1 {
+    font-size: 24px;
+  }
+  .welcome-panel p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .stat-card {
+    min-height: 100px;
+    padding: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+  }
+  .stat-card strong {
+    font-size: 19px;
+  }
+  .schedule-card,
+  .deadlines-card,
+  .announcements-card,
+  .progress-card {
+    padding: 16px;
+  }
+  .class-info {
+    display: block;
+  }
+  .class-info .room {
+    margin-top: 6px;
+  }
+  .class-info > .btn {
+    display: none;
+  }
+  .timeline-row {
+    grid-template-columns: 55px 11px 1fr;
+  }
+  .course-grid,
+  .course-grid.preview {
+    grid-template-columns: 1fr;
+  }
+  .course-grid.preview .course-card:last-child {
+    display: block;
+  }
+  .course-grid.list-view .course-card {
+    display: block;
+  }
+  .toolbar {
+    flex-wrap: wrap;
+  }
+  .toolbar .search-field {
+    flex-basis: 100%;
+  }
+  .toolbar select {
+    flex: 1;
+    min-width: 0;
+  }
+  .term-card {
+    width: 100%;
+  }
+  .dashboard-lower {
+    gap: 12px;
+  }
+  .announcement-row p {
+    display: none;
+  }
+  .progress-score {
+    align-items: flex-start;
+  }
+  .course-hero {
+    grid-template-columns: 45px 1fr;
+    padding: 20px;
+  }
+  .hero-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .hero-copy h1 {
+    font-size: 20px;
+  }
+  .hero-copy > p {
+    display: none;
+  }
+  .hero-instructor {
+    margin-top: 11px;
+  }
+  .hero-progress {
+    grid-column: 1/-1;
+  }
+  .course-tabs {
+    padding: 0;
+  }
+  .course-tabs button {
+    padding: 0 13px;
+  }
+  .instructor-note {
+    padding: 17px !important;
+  }
+  .quote-mark {
+    display: none;
+  }
+  .continue-module {
+    grid-template-columns: 43px 1fr;
+  }
+  .continue-module > .btn {
+    grid-column: 1/-1;
+  }
+  .material-row {
+    padding: 11px;
+  }
+  .material-row > .btn {
+    width: 36px;
+    font-size: 0;
+    padding: 0;
+  }
+  .material-row > .icon-btn.saved {
+    display: none;
+  }
+  .viewer-layer {
+    padding: 0;
+  }
+  .presentation-viewer {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .presentation-viewer header > div:last-child .icon-btn {
+    display: none;
+  }
+  .viewer-body {
+    grid-template-columns: 1fr;
+  }
+  .viewer-body > aside {
+    display: none;
+  }
+  .slide-canvas {
+    width: 92vw;
+  }
+  .slide-columns h3 {
+    font-size: 11px;
+  }
+  .slide-columns p {
+    font-size: 7px;
+  }
+  .activity-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+  .table-head {
+    display: none;
+  }
+  .activity-row {
+    grid-template-columns: 1fr auto;
+    gap: 9px;
+    padding: 14px;
+  }
+  .activity-row > span,
+  .activity-row > strong {
+    display: none;
+  }
+  .activity-row .btn {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .activity-detail,
+  .submission-card {
+    padding: 17px;
+  }
+  .activity-facts {
+    grid-template-columns: 1fr;
+  }
+  .quiz-head {
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .quiz-time {
+    padding: 8px;
+  }
+  .quiz-body {
+    grid-template-columns: 1fr;
+  }
+  .quiz-body aside {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding: 15px;
+  }
+  .quiz-body aside > div {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .quiz-body aside p {
+    display: none;
+  }
+  .quiz-body main {
+    padding: 24px 17px;
+  }
+  .calendar-toolbar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .calendar-toolbar > div:first-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .calendar-toolbar h2 {
+    min-width: auto;
+  }
+  .weekdays span {
+    padding: 8px 2px;
+    font-size: 7px;
+  }
+  .calendar-grid > div {
+    min-height: 55px;
+  }
+  .calendar-grid .today > span {
+    width: 20px;
+    height: 20px;
+  }
+  .table-head.grades {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .table-head.grades span:nth-child(2),
+  .table-head.grades span:nth-child(3),
+  .table-head.grades span:nth-child(4) {
+    display: none;
+  }
+  .grade-row {
+    grid-template-columns: 2fr 1fr;
+  }
+  .grade-row > span {
+    display: none;
+  }
+  .planner-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+  .planner-stats .streak {
+    grid-column: 1/-1;
+    grid-row: 1;
+  }
+  .weekly-plan {
+    order: -1;
+  }
+  .discussion-footer {
+    gap: 9px;
+  }
+  .discussion-footer button:nth-child(3) {
+    display: none;
+  }
+  .discussion-footer button:last-child {
+    font-size: 0;
+  }
+  .notes-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .notes-toolbar .search-field {
+    max-width: none;
+  }
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+  .full-announcement {
+    grid-template-columns: 34px 1fr;
+  }
+  .full-announcement > .icon-btn {
+    display: none;
+  }
+  .role-banner {
+    min-height: 170px;
+    padding: 24px;
+  }
+  .role-banner h1 {
+    font-size: 22px;
+  }
+  .role-banner > .btn,
+  .role-banner > .badge {
+    display: none;
+  }
+  .quick-actions > div:last-child {
+    grid-template-columns: 1fr;
+  }
+  .admin-tabs {
+    overflow-x: auto;
+  }
+  .admin-tabs button {
+    white-space: nowrap;
+  }
+  .user-row {
+    grid-template-columns: 38px 1fr auto;
+  }
+  .user-row > span:nth-child(3),
+  .user-row > .icon-btn {
+    display: none;
+  }
+  .popover {
+    position: fixed;
+    right: 10px;
+    left: 10px;
+    top: 70px;
+    width: auto;
+  }
+  .app-footer {
+    padding: 16px;
+    display: block;
+  }
+  .app-footer span:last-child {
+    display: block;
+    margin-top: 5px;
+  }
+}

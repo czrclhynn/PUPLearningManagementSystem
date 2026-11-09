@@ -1,0 +1,89 @@
+.announcement-filters {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+.announcement-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  gap: 17px;
+}
+.full-announcement {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: 38px 1fr 35px;
+  gap: 11px;
+  margin-bottom: 11px;
+}
+.full-announcement.unread {
+  border-left: 3px solid var(--maroon);
+}
+.announcement-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.announcement-meta > span {
+  font-size: 8px;
+  color: #aaa;
+}
+.announcement-meta > i {
+  width: 6px;
+  height: 6px;
+  background: var(--maroon);
+  border-radius: 50%;
+}
+.full-announcement h2 {
+  font-size: 15px;
+  margin: 9px 0 3px;
+}
+.full-announcement > div:nth-child(2) > span:not(.announcement-meta) {
+  color: #999;
+  font-size: 8px;
+}
+.full-announcement p {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.55;
+  margin: 10px 0;
+}
+.announcement-aside {
+  padding: 19px;
+  height: max-content;
+}
+.announcement-aside h3 {
+  font-size: 12px;
+}
+.announcement-aside > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 15px 0;
+}
+.announcement-aside > div span {
+  text-align: center;
+  border-right: 1px solid var(--line);
+}
+.announcement-aside > div span:last-child {
+  border: 0;
+}
+.announcement-aside strong,
+.announcement-aside small {
+  display: block;
+}
+.announcement-aside strong {
+  font-size: 20px;
+}
+.announcement-aside small {
+  color: #999;
+  font-size: 8px;
+}
+.announcement-aside hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 17px 0;
+}
+.announcement-aside p {
+  color: #777;
+  font-size: 9px;
+  line-height: 1.5;
+  margin: 8px 0 13px;
+}

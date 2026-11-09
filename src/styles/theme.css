@@ -1,0 +1,1015 @@
+/* Targeted navigation and theme enhancements */
+html {
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --maroon: #b53a3a;
+  --maroon-dark: #570000;
+  --maroon-soft: #351f1f;
+  --ink: #f5f5f5;
+  --muted: #a3a3a3;
+  --line: #383838;
+  --surface: #222222;
+  --canvas: #151515;
+  --blue: #65a0d3;
+}
+
+body,
+.app-main,
+.sidebar,
+.topbar,
+.card,
+.popover,
+button,
+input,
+select,
+textarea {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Rounded maroon desktop navigation */
+.sidebar {
+  top: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: 252px;
+  padding: 22px 14px 14px;
+  color: white;
+  background: linear-gradient(180deg, #800000 0%, #680000 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 14px 34px rgba(74, 0, 0, 0.18);
+  overflow: visible;
+  transition:
+    width 0.24s ease,
+    transform 0.24s ease;
+}
+
+.sidebar-top {
+  position: static;
+  align-items: center;
+  padding: 0 9px 22px;
+}
+
+.sidebar .logo-mark {
+  background: var(--gold);
+  color: #570000;
+  border-radius: 11px;
+  box-shadow: none;
+}
+
+.sidebar .logo-wrap strong {
+  color: white;
+}
+
+.sidebar .logo-wrap small {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-collapse {
+  position: absolute;
+  right: -27px;
+  top: 50%;
+  width: 27px;
+  height: 27px;
+  color: white;
+  background: #800000;
+  border: 2px solid var(--canvas);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(35, 0, 0, 0.24);
+  transform: translateY(-50%);
+}
+
+.sidebar-collapse:hover {
+  color: #570000;
+  background: var(--gold);
+}
+
+.nav-label {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.sidebar nav button {
+  color: rgba(255, 255, 255, 0.76);
+  border-radius: 10px;
+}
+
+.sidebar nav button:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar nav button.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.sidebar nav button.active::before {
+  left: -2px;
+  width: 3px;
+  height: 24px;
+  background: var(--gold);
+}
+
+.sidebar nav button em {
+  color: #570000;
+  background: var(--gold);
+}
+
+.sidebar nav button em.announcement-badge {
+  color: white;
+  background: #d9534f;
+}
+
+.sidebar-profile {
+  border-top-color: rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-profile strong {
+  color: white;
+}
+
+.sidebar-profile span {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.sidebar-profile > svg {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar .avatar {
+  color: #570000;
+  background: var(--gold);
+}
+
+.app-main {
+  margin-left: 280px;
+  transition: margin-left 0.24s ease;
+}
+
+/* Collapsed desktop navigation */
+.sidebar.collapsed {
+  width: 78px;
+  padding-inline: 11px;
+}
+
+.sidebar.collapsed .sidebar-top {
+  padding-inline: 7px;
+}
+
+.sidebar.collapsed .logo-wrap > div:last-child,
+.sidebar.collapsed .nav-label,
+.sidebar.collapsed nav button > span,
+.sidebar.collapsed .sidebar-profile > div:nth-child(2),
+.sidebar.collapsed .sidebar-profile > svg {
+  display: none;
+}
+
+.sidebar.collapsed nav {
+  overflow: visible;
+}
+
+.sidebar.collapsed nav button {
+  width: 54px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+
+.sidebar.collapsed nav button em {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
+  border-radius: 50%;
+}
+
+.sidebar.collapsed .sidebar-profile {
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.sidebar.collapsed .sidebar-collapse {
+  right: -25px;
+}
+
+.sidebar.collapsed .sidebar-collapse svg {
+  transform: rotate(180deg);
+}
+
+.sidebar.collapsed nav button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  z-index: 80;
+  left: 64px;
+  top: 50%;
+  padding: 7px 10px;
+  color: white;
+  background: #292929;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-4px, -50%);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.sidebar.collapsed nav button:hover::after {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+.app-main.sidebar-collapsed {
+  margin-left: 106px;
+}
+
+.theme-toggle {
+  color: #6b5c5c;
+}
+
+.theme-toggle:hover {
+  color: var(--maroon);
+}
+
+/* Deliberately designed dark surfaces across all existing pages */
+html[data-theme="dark"] body,
+html[data-theme="dark"] .app-shell,
+html[data-theme="dark"] .app-main {
+  color: var(--ink);
+  background: var(--canvas);
+}
+
+html[data-theme="dark"] .sidebar {
+  background: linear-gradient(180deg, #650000 0%, #4a0000 100%);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+html[data-theme="dark"] .topbar {
+  background: rgba(27, 27, 27, 0.95);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"]
+  :where(
+    .card,
+    .popover,
+    .course-tabs,
+    .course-tabs button,
+    .notification-item,
+    .profile-popover button,
+    .material-row,
+    .materials-aside > button:not(.btn),
+    .discussion-aside > button:not(.text-btn),
+    .subjects-panel button,
+    .deadline-item,
+    .add-task-row,
+    .view-all,
+    .answer-option,
+    .login-form-side,
+    .search-results
+  ) {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"]
+  :where(
+    input,
+    select,
+    textarea,
+    .input-wrap,
+    .search-field,
+    .global-search,
+    .icon-btn,
+    .btn.secondary,
+    .term-card,
+    .attachment
+  ) {
+  color: var(--ink);
+  background: #222222;
+  border-color: var(--line);
+}
+
+html[data-theme="dark"]
+  :where(
+    .btn.tertiary,
+    .module-head,
+    .table-head,
+    .weekdays,
+    .continue-module,
+    .activity-facts,
+    .glance-grid div,
+    .upload-zone,
+    .quick-actions > div:last-child button,
+    .view-toggle,
+    .view-pills,
+    .date-tile,
+    .mini-avatar,
+    .notif-icon
+  ) {
+  color: var(--ink);
+  background: #292929;
+  border-color: var(--line);
+}
+
+html[data-theme="dark"]
+  :where(.view-toggle button.active, .view-pills button.active, .subjects-panel button.active) {
+  color: #f5f5f5;
+  background: #383838;
+}
+
+html[data-theme="dark"] .global-search input {
+  background: transparent;
+}
+
+html[data-theme="dark"] .welcome-panel {
+  background: #570000;
+}
+
+html[data-theme="dark"] :where(.course-hero, .role-banner, .grade-hero) {
+  background-color: #4d1111;
+}
+
+html[data-theme="dark"] .admin-banner {
+  background: #292929;
+}
+
+html[data-theme="dark"] :where(.course-body, .course-card, .note-card, .full-announcement) {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] :where(.calendar-grid > div, .calendar, .quiz-shell) {
+  color: var(--ink);
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] :where(.toolbar, .schedule-card, .deadlines-card, .announcements-card) {
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .progress,
+html[data-theme="dark"] .study-day > div {
+  background: #3b3b3b;
+}
+
+html[data-theme="dark"] .ring {
+  border-color: #3c3c3c;
+  border-top-color: var(--maroon);
+  border-right-color: var(--maroon);
+}
+
+html[data-theme="dark"] .btn.primary {
+  background: #9d2f2f;
+}
+
+html[data-theme="dark"] .btn.primary:hover {
+  background: #b53a3a;
+}
+
+html[data-theme="dark"] :where(.text-btn, .course-code, .eyebrow) {
+  color: #e06a6a;
+}
+
+html[data-theme="dark"]
+  :where(
+    .timeline-row > i::after,
+    .announcement-row,
+    .material-row,
+    .activity-row,
+    .grade-row,
+    .task-row,
+    .review-row,
+    .managed-course
+  ) {
+  border-color: var(--line);
+}
+
+html[data-theme="dark"] .login-page {
+  background: var(--canvas);
+}
+
+html[data-theme="dark"] .login-brand {
+  background: #4d0000;
+}
+
+html[data-theme="dark"] .calendar-event {
+  color: #f0b5b5;
+  background: #3a2424;
+}
+
+html[data-theme="dark"] .calendar-event.e1 {
+  color: #e5bf71;
+  background: #3b3323;
+}
+
+html[data-theme="dark"] .calendar-event.e2 {
+  color: #93bce0;
+  background: #263644;
+}
+
+html[data-theme="dark"] .slide-canvas {
+  color: #2b2524;
+}
+
+html[data-theme="dark"] .profile-trigger {
+  border-color: var(--line);
+}
+
+@media (max-width: 1150px) and (min-width: 821px) {
+  .sidebar {
+    width: 225px;
+  }
+  .sidebar.collapsed {
+    width: 78px;
+  }
+  .app-main {
+    margin-left: 253px;
+  }
+  .app-main.sidebar-collapsed {
+    margin-left: 106px;
+  }
+}
+
+@media (max-width: 820px) {
+  .sidebar,
+  .sidebar.collapsed {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px;
+    padding: 22px 14px 14px;
+    border-radius: 0 20px 20px 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open,
+  .sidebar.collapsed.open {
+    transform: translateX(0);
+  }
+
+  .sidebar.collapsed .logo-wrap > div:last-child,
+  .sidebar.collapsed .nav-label,
+  .sidebar.collapsed nav button > span,
+  .sidebar.collapsed .sidebar-profile > div:nth-child(2),
+  .sidebar.collapsed .sidebar-profile > svg {
+    display: block;
+  }
+
+  .sidebar.collapsed nav {
+    overflow-y: auto;
+  }
+
+  .sidebar.collapsed nav button {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 12px;
+  }
+
+  .sidebar.collapsed nav button em {
+    position: static;
+    width: 19px;
+    height: 19px;
+    margin-left: auto;
+    border-radius: 7px;
+  }
+
+  .sidebar.collapsed nav button::after,
+  .sidebar-collapse {
+    display: none;
+  }
+
+  .sidebar.collapsed .sidebar-profile {
+    justify-content: flex-start;
+    padding-inline: 8px;
+  }
+
+  .app-main,
+  .app-main.sidebar-collapsed {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .theme-toggle {
+    display: grid;
+  }
+}
+
+/* Dark-mode readability: increase dense metadata without changing light-mode layout */
+html[data-theme="dark"] {
+  --muted: #b5b5b5;
+}
+
+html[data-theme="dark"] .sidebar .nav-label {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .sidebar-profile span {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .page :where(small, .badge) {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+html[data-theme="dark"] .page :where(.eyebrow, .live-label, .course-code) {
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .page .section-head p,
+html[data-theme="dark"] .page .page-heading p {
+  color: #b8b8b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+html[data-theme="dark"] .page .stat-card span {
+  color: #b8b8b8;
+  font-size: 12px;
+}
+
+html[data-theme="dark"] .page .stat-card small {
+  color: #aaa;
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .page .deadline-item > div:nth-child(2) strong {
+  font-size: 12px;
+}
+
+html[data-theme="dark"] .page .deadline-item > div:nth-child(2) span,
+html[data-theme="dark"] .page .deadline-item > div:nth-child(2) small {
+  color: #b5b5b5;
+  font-size: 10px;
+}
+
+html[data-theme="dark"]
+  .page
+  :where(
+    .instructor-line,
+    .course-progress-head,
+    .course-meta,
+    .file-info span,
+    .detail-list span
+  ) {
+  color: #b5b5b5;
+  font-size: 11px;
+}
+
+html[data-theme="dark"] .page .course-body h3 {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+html[data-theme="dark"] .page .announcement-row h3 {
+  font-size: 12px;
+}
+
+html[data-theme="dark"] .page .announcement-row span {
+  color: #aaa;
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .page .announcement-row p {
+  color: #c0c0c0;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+html[data-theme="dark"] .page :where(.table-head, .weekdays span) {
+  color: #b0b0b0;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+html[data-theme="dark"]
+  .page
+  :where(
+    .activity-row,
+    .grade-row,
+    .user-row,
+    .material-row,
+    .task-row,
+    .review-row,
+    .managed-course
+  ) {
+  font-size: 11px;
+}
+
+html[data-theme="dark"]
+  .page
+  :where(
+    .activity-row small,
+    .grade-row small,
+    .user-row small,
+    .task-row span,
+    .review-row span,
+    .managed-course small
+  ) {
+  color: #aaa;
+  font-size: 10px;
+}
+
+html[data-theme="dark"]
+  .page
+  :where(
+    .overview-aside > p,
+    .materials-aside p,
+    .discussion-aside p,
+    .announcement-aside p,
+    .submission-note,
+    .grade-hero p
+  ) {
+  color: #b8b8b8;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+html[data-theme="dark"] .page :where(.discussion-card > p, .full-announcement p, .note-card p) {
+  color: #c2c2c2;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+html[data-theme="dark"] .page :where(label, .response-label) {
+  color: #e0e0e0;
+  font-size: 11px;
+}
+
+html[data-theme="dark"] .popover :where(strong, span, small),
+html[data-theme="dark"] .profile-trigger :where(strong, small) {
+  line-height: 1.35;
+}
+
+html[data-theme="dark"] .notification-item strong {
+  font-size: 12px;
+}
+
+html[data-theme="dark"] .notification-item small,
+html[data-theme="dark"] .profile-trigger small {
+  color: #b5b5b5;
+  font-size: 11px;
+}
+
+/* Schedule text needs a larger floor than other compact metadata */
+html[data-theme="dark"] .schedule-card .time strong {
+  color: #f5f5f5;
+  font-size: 15px;
+}
+
+html[data-theme="dark"] .schedule-card .time span {
+  color: #bcbcbc;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+html[data-theme="dark"] .schedule-card .class-info h3 {
+  color: #f5f5f5;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+html[data-theme="dark"] .schedule-card .class-info p {
+  color: #bcbcbc;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+html[data-theme="dark"] .schedule-card .room {
+  color: #d0d0d0;
+  font-size: 13px;
+  line-height: 1.4;
+  gap: 9px;
+}
+
+html[data-theme="dark"] .schedule-card .room svg {
+  width: 18px;
+  height: 18px;
+  color: #a8a8a8;
+  stroke-width: 2;
+}
+
+html[data-theme="dark"] .schedule-card .room small {
+  color: #bcbcbc;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+html[data-theme="dark"] .schedule-card .live-label {
+  color: #e17878;
+  font-size: 10px;
+}
+
+html[data-theme="dark"] .schedule-card .timeline-row > i {
+  background: #8f8f8f;
+  box-shadow: 0 0 0 1px #8f8f8f;
+}
+
+html[data-theme="dark"] .schedule-card .timeline-row > i::after {
+  background: #484848;
+}
+
+html[data-theme="dark"] .schedule-card .timeline-row.current > i {
+  background: #d35a5a;
+  box-shadow: 0 0 0 1px #d35a5a;
+}
+
+/* Minimal scrollbars that follow the active theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(128, 0, 0, 0.34) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(128, 0, 0, 0.3);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 0, 0, 0.52);
+  background-clip: padding-box;
+}
+
+.sidebar,
+.sidebar nav {
+  scrollbar-color: rgba(255, 255, 255, 0.34) transparent;
+}
+
+.sidebar::-webkit-scrollbar,
+.sidebar nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.sidebar nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.32);
+  border: 0;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.sidebar nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 164, 65, 0.8);
+}
+
+html[data-theme="dark"] * {
+  scrollbar-color: #555 transparent;
+}
+
+html[data-theme="dark"] *::-webkit-scrollbar-thumb {
+  background: #4d4d4d;
+}
+
+html[data-theme="dark"] *::-webkit-scrollbar-thumb:hover {
+  background: #686868;
+}
+
+html[data-theme="dark"] .sidebar,
+html[data-theme="dark"] .sidebar nav {
+  scrollbar-color: rgba(255, 255, 255, 0.34) transparent;
+}
+
+/* Shared readability floor for both light and dark themes */
+.sidebar .nav-label {
+  font-size: 10px;
+}
+
+.sidebar-profile span {
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.page :where(small, .badge) {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.page :where(.eyebrow, .live-label, .course-code) {
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.page .section-head p,
+.page .page-heading p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.page .stat-card span {
+  font-size: 12px;
+}
+
+.page .stat-card small {
+  font-size: 11px;
+}
+
+.page .deadline-item > div:nth-child(2) strong {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.page .deadline-item > div:nth-child(2) span,
+.page .deadline-item > div:nth-child(2) small {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.page
+  :where(
+    .instructor-line,
+    .course-progress-head,
+    .course-meta,
+    .file-info span,
+    .detail-list span
+  ) {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.page .course-body h3 {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.page .announcement-row h3 {
+  font-size: 12px;
+}
+
+.page .announcement-row span {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.page .announcement-row p {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.page :where(.table-head, .weekdays span) {
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.page
+  :where(
+    .activity-row,
+    .grade-row,
+    .user-row,
+    .material-row,
+    .task-row,
+    .review-row,
+    .managed-course
+  ) {
+  font-size: 12px;
+}
+
+.page
+  :where(
+    .activity-row small,
+    .grade-row small,
+    .user-row small,
+    .task-row span,
+    .review-row span,
+    .managed-course small
+  ) {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.page
+  :where(
+    .overview-aside > p,
+    .materials-aside p,
+    .discussion-aside p,
+    .announcement-aside p,
+    .submission-note,
+    .grade-hero p
+  ) {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.page :where(.discussion-card > p, .full-announcement p, .note-card p) {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.page :where(label, .response-label) {
+  font-size: 12px;
+}
+
+.notification-item strong {
+  font-size: 12px;
+}
+
+.notification-item small,
+.profile-trigger small {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+/* Schedule sizing applies in light mode too */
+.schedule-card .time strong {
+  font-size: 15px;
+}
+
+.schedule-card .time span {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.schedule-card .class-info h3 {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.schedule-card .class-info p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.schedule-card .room {
+  font-size: 13px;
+  line-height: 1.4;
+  gap: 9px;
+}
+
+.schedule-card .room svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+.schedule-card .room small {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.schedule-card .live-label {
+  font-size: 10px;
+}
+
+html:not([data-theme="dark"])
+  .page
+  :where(
+    .section-head p,
+    .page-heading p,
+    .deadline-item > div:nth-child(2) span,
+    .deadline-item > div:nth-child(2) small,
+    .instructor-line,
+    .course-progress-head,
+    .course-meta,
+    .file-info span,
+    .detail-list span,
+    .announcement-row span
+  ) {
+  color: #686868;
+}
+
+html:not([data-theme="dark"]) .schedule-card .time span,
+html:not([data-theme="dark"]) .schedule-card .class-info p,
+html:not([data-theme="dark"]) .schedule-card .room small {
+  color: #626262;
+}
+
+html:not([data-theme="dark"]) .schedule-card .room {
+  color: #454545;
+}
+
+html:not([data-theme="dark"]) .schedule-card .room svg {
+  color: #686868;
+}

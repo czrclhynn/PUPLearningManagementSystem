@@ -19,3 +19,17 @@ logs/
 # beside it.
 /.plugins/
 /.opencode-skills/
+
+# Local agent guidance and work records. Share these separately with collaborators.
+/AGENTS.md
+/CLAUDE.md
+/.agent/
+/.agents/skills/
+/progress.md
+/lessons.md
+
+# Test output
+/playwright-report/
+/test-results/
+/coverage/
+/apps/api/dist/
