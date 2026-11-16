@@ -1071,9 +1071,11 @@ html[data-theme="dark"]
     .recent-activity small,
     .recent-activity time,
     .full-announcement .announcement-meta,
-    .full-announcement > div:nth-child(2
-  ) > span:not(.announcement-meta),
-  .confirm-modal > p, .submission-success > p, .app-footer) {
+    .full-announcement > div:nth-child(2) > span:not(.announcement-meta),
+    .confirm-modal > p,
+    .submission-success > p,
+    .app-footer
+  ) {
   color: var(--muted);
 }
 
@@ -1087,13 +1089,7 @@ html[data-theme="dark"] .calendar-grid .muted > span {
 }
 
 html[data-theme="dark"]
-  :is(
-    .text-btn,
-    .course-code,
-    .eyebrow,
-    .tabs button.active,
-    .admin-tabs button.active
-  ) {
+  :is(.text-btn, .course-code, .eyebrow, .tabs button.active, .admin-tabs button.active) {
   color: #f29b9b;
 }
 
