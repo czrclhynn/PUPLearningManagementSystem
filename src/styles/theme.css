@@ -186,9 +186,9 @@ textarea {
   position: absolute;
   top: 1px;
   right: 1px;
-  width: 15px;
-  height: 15px;
-  font-size: 8px;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
   border-radius: 50%;
 }
 
@@ -217,7 +217,7 @@ textarea {
   border: 1px solid #3a3a3a;
   border-radius: 6px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   white-space: nowrap;
@@ -514,34 +514,34 @@ html[data-theme="dark"] .profile-trigger {
   }
 }
 
-/* Dark-mode readability: increase dense metadata without changing light-mode layout */
+/* Dark-mode readability: keep metadata at a readable size */
 html[data-theme="dark"] {
   --muted: #b5b5b5;
 }
 
 html[data-theme="dark"] .sidebar .nav-label {
   color: rgba(255, 255, 255, 0.65);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .sidebar-profile span {
   color: rgba(255, 255, 255, 0.74);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .page :where(small, .badge) {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
 html[data-theme="dark"] .page :where(.eyebrow, .live-label, .course-code) {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .page .section-head p,
 html[data-theme="dark"] .page .page-heading p {
   color: #b8b8b8;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -552,7 +552,7 @@ html[data-theme="dark"] .page .stat-card span {
 
 html[data-theme="dark"] .page .stat-card small {
   color: #aaa;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .page .deadline-item > div:nth-child(2) strong {
@@ -562,7 +562,7 @@ html[data-theme="dark"] .page .deadline-item > div:nth-child(2) strong {
 html[data-theme="dark"] .page .deadline-item > div:nth-child(2) span,
 html[data-theme="dark"] .page .deadline-item > div:nth-child(2) small {
   color: #b5b5b5;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"]
@@ -575,7 +575,7 @@ html[data-theme="dark"]
     .detail-list span
   ) {
   color: #b5b5b5;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .page .course-body h3 {
@@ -589,18 +589,18 @@ html[data-theme="dark"] .page .announcement-row h3 {
 
 html[data-theme="dark"] .page .announcement-row span {
   color: #aaa;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .page .announcement-row p {
   color: #c0c0c0;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
 html[data-theme="dark"] .page :where(.table-head, .weekdays span) {
   color: #b0b0b0;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 
@@ -615,7 +615,7 @@ html[data-theme="dark"]
     .review-row,
     .managed-course
   ) {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"]
@@ -629,7 +629,7 @@ html[data-theme="dark"]
     .managed-course small
   ) {
   color: #aaa;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"]
@@ -643,19 +643,19 @@ html[data-theme="dark"]
     .grade-hero p
   ) {
   color: #b8b8b8;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
 html[data-theme="dark"] .page :where(.discussion-card > p, .full-announcement p, .note-card p) {
   color: #c2c2c2;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
 html[data-theme="dark"] .page :where(label, .response-label) {
   color: #e0e0e0;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .popover :where(strong, span, small),
@@ -670,7 +670,7 @@ html[data-theme="dark"] .notification-item strong {
 html[data-theme="dark"] .notification-item small,
 html[data-theme="dark"] .profile-trigger small {
   color: #b5b5b5;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* Schedule text needs a larger floor than other compact metadata */
@@ -681,7 +681,7 @@ html[data-theme="dark"] .schedule-card .time strong {
 
 html[data-theme="dark"] .schedule-card .time span {
   color: #bcbcbc;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -720,7 +720,7 @@ html[data-theme="dark"] .schedule-card .room small {
 
 html[data-theme="dark"] .schedule-card .live-label {
   color: #e17878;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html[data-theme="dark"] .schedule-card .timeline-row > i {
@@ -804,21 +804,21 @@ html[data-theme="dark"] .sidebar nav {
 
 /* Shared readability floor for both light and dark themes */
 .sidebar .nav-label {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .sidebar-profile span {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
 .page :where(small, .badge) {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
 .page :where(.eyebrow, .live-label, .course-code) {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -833,7 +833,7 @@ html[data-theme="dark"] .sidebar nav {
 }
 
 .page .stat-card small {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .page .deadline-item > div:nth-child(2) strong {
@@ -843,7 +843,7 @@ html[data-theme="dark"] .sidebar nav {
 
 .page .deadline-item > div:nth-child(2) span,
 .page .deadline-item > div:nth-child(2) small {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -855,7 +855,7 @@ html[data-theme="dark"] .sidebar nav {
     .file-info span,
     .detail-list span
   ) {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -869,17 +869,17 @@ html[data-theme="dark"] .sidebar nav {
 }
 
 .page .announcement-row span {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
 .page .announcement-row p {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
 .page :where(.table-head, .weekdays span) {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -905,7 +905,7 @@ html[data-theme="dark"] .sidebar nav {
     .review-row span,
     .managed-course small
   ) {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.45;
 }
 
@@ -918,7 +918,7 @@ html[data-theme="dark"] .sidebar nav {
     .submission-note,
     .grade-hero p
   ) {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -937,7 +937,7 @@ html[data-theme="dark"] .sidebar nav {
 
 .notification-item small,
 .profile-trigger small {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -980,7 +980,7 @@ html[data-theme="dark"] .sidebar nav {
 }
 
 .schedule-card .live-label {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 html:not([data-theme="dark"])
@@ -1012,4 +1012,113 @@ html:not([data-theme="dark"]) .schedule-card .room {
 
 html:not([data-theme="dark"]) .schedule-card .room svg {
   color: #686868;
+}
+
+/* Compact labels must stay readable in either theme, including mobile layouts. */
+.page
+  :is(
+    .calendar-event,
+    .calendar-legend span,
+    .upcoming-day > span,
+    .upcoming-day p,
+    .calendar-grid > div > span,
+    .term-card span,
+    .term-card strong,
+    .grade-bar,
+    .date-tile span,
+    .tabs button span
+  ),
+.app-footer,
+.logo-wrap small {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.calendar-event {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.sidebar .logo-wrap small,
+.sidebar .nav-label,
+.sidebar-profile span {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+html[data-theme="dark"] .sidebar .nav-label,
+html[data-theme="dark"] .sidebar-profile span {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Light-theme literal grays otherwise survive on the dark card surfaces. */
+html[data-theme="dark"] :is(.course-progress-head strong, .upload-zone strong) {
+  color: var(--ink);
+}
+
+html[data-theme="dark"]
+  :is(
+    .tabs button,
+    .view-pills button,
+    .view-toggle button,
+    .admin-tabs button,
+    .theme-toggle,
+    .date-tile span,
+    .calendar-legend span,
+    .upcoming-day > span,
+    .upcoming-day p,
+    .storage,
+    .planner-stats p,
+    .recent-activity small,
+    .recent-activity time,
+    .full-announcement .announcement-meta,
+    .full-announcement > div:nth-child(2
+  ) > span:not(.announcement-meta),
+  .confirm-modal > p, .submission-success > p, .app-footer) {
+  color: var(--muted);
+}
+
+html[data-theme="dark"] :is(input, textarea)::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+html[data-theme="dark"] .calendar-grid .muted > span {
+  color: var(--muted);
+}
+
+html[data-theme="dark"]
+  :is(
+    .text-btn,
+    .course-code,
+    .eyebrow,
+    .tabs button.active,
+    .admin-tabs button.active
+  ) {
+  color: #f29b9b;
+}
+
+html[data-theme="dark"] .tabs button span,
+html[data-theme="dark"] .badge {
+  color: #dedede;
+  background: #383838;
+}
+
+html[data-theme="dark"] :is(.badge-pending, .badge-high, .badge-gold) {
+  color: #f2ce80;
+  background: #40331d;
+}
+
+html[data-theme="dark"] :is(.badge-submitted, .badge-completed) {
+  color: #8fdfb5;
+  background: #203b30;
+}
+
+html[data-theme="dark"] :is(.badge-graded, .badge-medium) {
+  color: #a4d2f5;
+  background: #24394b;
+}
+
+html[data-theme="dark"] .badge-overdue {
+  color: #ffb3ae;
+  background: #482a2a;
 }
