@@ -10,6 +10,7 @@ import {
   MessageCircle,
   NotebookPen,
 } from "lucide-react";
+import type { Role } from "./api";
 
 export type Page =
   | "dashboard"
@@ -54,3 +55,24 @@ export const titles: Record<Page, string> = {
   instructor: "Instructor Dashboard",
   admin: "Administrator Dashboard",
 };
+
+export const workspace: Record<Role, Page> = {
+  Administrator: "admin",
+  Instructor: "instructor",
+  Student: "dashboard",
+};
+
+export function pageForRole(role: Role, page: Page) {
+  if (page === "settings" || page === "help" || page === "announcements") return page;
+  if (role === "Student" && page !== "admin" && page !== "instructor") return page;
+  return workspace[role];
+}
+
+export function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}

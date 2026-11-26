@@ -1,39 +1,35 @@
 import { useState } from "react";
 import {
-  AlarmClock,
   ArrowRight,
   Bell,
-  BookMarked,
-  BookOpen,
-  Check,
-  CheckCircle2,
   ChevronDown,
-  GraduationCap,
   LogOut,
   Menu,
   Moon,
   Search,
   Settings,
-  ShieldCheck,
   Sun,
   User,
 } from "lucide-react";
-import { type Page } from "./navigation";
+import { initials, type Page } from "./navigation";
+import type { SessionUser } from "./api";
 
 export function Header({
   title,
   onMenu,
   onNavigate,
-  role,
-  setRole,
+  user,
+  onLogout,
+  signingOut,
   theme,
   onThemeToggle,
 }: {
   title: string;
   onMenu: () => void;
   onNavigate: (p: Page) => void;
-  role: string;
-  setRole: (r: string) => void;
+  user: SessionUser;
+  onLogout: () => void;
+  signingOut: boolean;
   theme: "light" | "dark";
   onThemeToggle: () => void;
 }) {
@@ -42,7 +38,7 @@ export function Header({
   return (
     <header className="topbar">
       <div className="topbar-title">
-        <button className="menu-button icon-btn" onClick={onMenu}>
+        <button className="menu-button icon-btn" onClick={onMenu} aria-label="Open navigation">
           <Menu size={21} />
         </button>
         <div>
@@ -66,39 +62,22 @@ export function Header({
         <div className="relative">
           <button
             className="icon-btn notification-button"
+            aria-label="Notifications"
             onClick={() => {
               setNotifications(!notifications);
               setProfile(false);
             }}
           >
             <Bell size={20} />
-            <span />
           </button>
           {notifications && (
             <div className="popover notification-popover">
               <div className="popover-head">
                 <div>
                   <strong>Notifications</strong>
-                  <span>3 unread updates</span>
+                  <span>No portal notifications</span>
                 </div>
-                <button className="text-btn">Mark all read</button>
               </div>
-              {[
-                ["New material uploaded", "COMP 034 · 8 minutes ago", BookOpen],
-                ["Deadline approaching", "Database activity · Due tomorrow", AlarmClock],
-                ["Your work was graded", "Ethics reflection · 28/30", CheckCircle2],
-              ].map(([a, b, Icon], i) => (
-                <button className="notification-item" key={i}>
-                  <div className="notif-icon">
-                    <Icon size={17} />
-                  </div>
-                  <span>
-                    <strong>{a as string}</strong>
-                    <small>{b as string}</small>
-                  </span>
-                  <i />
-                </button>
-              ))}
               <button
                 className="view-all"
                 onClick={() => {
@@ -106,7 +85,7 @@ export function Header({
                   setNotifications(false);
                 }}
               >
-                View notification center <ArrowRight size={15} />
+                View announcements <ArrowRight size={15} />
               </button>
             </div>
           )}
@@ -119,55 +98,36 @@ export function Header({
               setNotifications(false);
             }}
           >
-            <div className="avatar small">IB</div>
+            <div className="avatar small">{initials(user.name)}</div>
             <span>
-              <strong>Izy Basco</strong>
-              <small>{role} account</small>
+              <strong>{user.name}</strong>
+              <small>{user.role} account</small>
             </span>
             <ChevronDown size={15} />
           </button>
           {profile && (
             <div className="popover profile-popover">
-              <span className="menu-label">SWITCH WORKSPACE</span>
+              <span className="menu-label">{user.role.toUpperCase()} ACCOUNT</span>
               <button
+                type="button"
                 onClick={() => {
-                  setRole("Student");
-                  onNavigate("dashboard");
+                  onNavigate("settings");
                   setProfile(false);
                 }}
               >
-                <GraduationCap size={17} /> Student{" "}
-                <Check size={15} className={role === "Student" ? "" : "hidden"} />
-              </button>
-              <button
-                onClick={() => {
-                  setRole("Instructor");
-                  onNavigate("instructor");
-                  setProfile(false);
-                }}
-              >
-                <BookMarked size={17} /> Instructor{" "}
-                <Check size={15} className={role === "Instructor" ? "" : "hidden"} />
-              </button>
-              <button
-                onClick={() => {
-                  setRole("Administrator");
-                  onNavigate("admin");
-                  setProfile(false);
-                }}
-              >
-                <ShieldCheck size={17} /> Administrator{" "}
-                <Check size={15} className={role === "Administrator" ? "" : "hidden"} />
-              </button>
-              <hr />
-              <button>
                 <User size={17} /> My profile
               </button>
-              <button>
+              <button
+                type="button"
+                onClick={() => {
+                  onNavigate("settings");
+                  setProfile(false);
+                }}
+              >
                 <Settings size={17} /> Account settings
               </button>
-              <button className="danger">
-                <LogOut size={17} /> Sign out
+              <button className="danger" onClick={onLogout} disabled={signingOut}>
+                <LogOut size={17} /> {signingOut ? "Signing out…" : "Sign out"}
               </button>
             </div>
           )}

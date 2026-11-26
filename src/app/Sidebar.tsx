@@ -1,9 +1,19 @@
-import { CircleHelp, MoreHorizontal, PanelLeftClose, Settings, X } from "lucide-react";
+import {
+  CircleHelp,
+  LayoutDashboard,
+  MoreHorizontal,
+  PanelLeftClose,
+  Settings,
+  X,
+} from "lucide-react";
 import { type Page } from "./navigation";
-import { navItems } from "./navigation";
+import { initials, navItems, workspace } from "./navigation";
+import type { SessionUser } from "./api";
 import { Logo } from "../components/ui/Logo";
 
 export function Sidebar({
+  user,
+  pendingActivities,
   page,
   onNavigate,
   open,
@@ -11,6 +21,8 @@ export function Sidebar({
   collapsed,
   onToggleCollapse,
 }: {
+  user: SessionUser;
+  pendingActivities?: number;
   page: Page;
   onNavigate: (page: Page, tab?: string) => void;
   open: boolean;
@@ -18,6 +30,10 @@ export function Sidebar({
   collapsed: boolean;
   onToggleCollapse: () => void;
 }) {
+  const items =
+    user.role === "Student"
+      ? navItems
+      : [{ id: workspace[user.role], label: "Dashboard", icon: LayoutDashboard }];
   return (
     <>
       {open && <button className="sidebar-scrim" onClick={onClose} aria-label="Close navigation" />}
@@ -37,8 +53,8 @@ export function Sidebar({
           </button>
         </div>
         <nav>
-          <span className="nav-label">STUDENT WORKSPACE</span>
-          {navItems.map((item) => {
+          <span className="nav-label">{user.role.toUpperCase()} WORKSPACE</span>
+          {items.map((item) => {
             const active = item.id === "materials" ? page === "course" : page === item.id;
             return (
               <button
@@ -54,8 +70,7 @@ export function Sidebar({
               >
                 <item.icon size={19} />
                 <span>{item.label}</span>
-                {item.id === "activities" && <em>4</em>}
-                {item.id === "announcements" && <em className="announcement-badge">3</em>}
+                {item.id === "activities" && !!pendingActivities && <em>{pendingActivities}</em>}
               </button>
             );
           })}
@@ -80,10 +95,10 @@ export function Sidebar({
           </button>
         </nav>
         <div className="sidebar-profile">
-          <div className="avatar">IB</div>
+          <div className="avatar">{initials(user.name)}</div>
           <div>
-            <strong>Izy Basco</strong>
-            <span>BSIT 3-3 · 2022-00123</span>
+            <strong>{user.name}</strong>
+            <span>{user.role}</span>
           </div>
           <MoreHorizontal size={18} />
         </div>

@@ -152,6 +152,45 @@
 .user-row small {
   display: block;
 }
+.admin-record > span {
+  overflow-wrap: anywhere;
+}
+.admin-message {
+  margin: 12px 0;
+  font-size: 12px;
+}
+.admin-error {
+  color: var(--ink);
+  font-weight: 600;
+}
+.admin-dialog {
+  width: min(460px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  overflow: auto;
+  padding: 0;
+  color: inherit;
+}
+.admin-dialog::backdrop {
+  background: rgb(23 15 19 / 50%);
+}
+.admin-dialog .compose-modal {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .user-row.admin-record {
+    grid-template-columns: 32px minmax(0, 1fr) auto 32px;
+    gap: 6px;
+  }
+  .user-row.admin-record > span:nth-child(3) {
+    display: block;
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+  .user-row.admin-record > .admin-edit {
+    display: grid;
+  }
+}
 .user-row small {
   color: #999;
   font-size: 8px;

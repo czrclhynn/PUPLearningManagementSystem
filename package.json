@@ -9,6 +9,8 @@
     "build:api": "corepack pnpm --dir apps/api build",
     "preview": "vite preview",
     "dev:api": "corepack pnpm --dir apps/api dev",
+    "db:migrate": "corepack pnpm --dir apps/api migrate",
+    "db:bootstrap-admin": "corepack pnpm --dir apps/api bootstrap-admin",
     "format": "oxfmt src apps/api e2e .github index.html package.json pnpm-workspace.yaml eslint.config.js vitest.config.ts playwright.config.ts",
     "format:check": "oxfmt --check src apps/api e2e .github index.html package.json pnpm-workspace.yaml eslint.config.js vitest.config.ts playwright.config.ts",
     "lint": "eslint src apps/api",
