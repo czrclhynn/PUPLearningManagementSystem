@@ -16,5 +16,6 @@
 @import "./features/announcements/announcements.css";
 @import "./features/instructor/instructor.css";
 @import "./features/admin/admin.css";
+@import "./features/learning/learning.css";
 @import "./styles/responsive.css";
 @import "./styles/theme.css";

@@ -1,295 +1,43 @@
-import { useState } from "react";
-import {
-  ArrowLeft,
-  CalendarDays,
-  Check,
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  ClipboardCheck,
-  Clock3,
-  Download,
-  File,
-  FileSpreadsheet,
-  FileText,
-  Play,
-  Send,
-  ShieldCheck,
-  Star,
-  Upload,
-} from "lucide-react";
-import { activities } from "./mock";
+import { useState, type FormEvent } from "react";
+import { ArrowLeft, ClipboardCheck, ExternalLink, Send } from "lucide-react";
+import { api, ApiError, errorMessage } from "../../app/api";
 import { Badge } from "../../components/ui/Badge";
-import { Progress } from "../../components/ui/Progress";
+import { academicDate, activityStatus } from "../learning/academic";
+import type { LearningCourse, StudentActivity } from "../learning/types";
+
+const filters = ["All", "Pending", "Submitted", "Graded", "Overdue", "Returned"];
 
 export function ActivitiesPage({
   embedded = false,
-  onOpen,
+  activities,
+  courses,
+  refresh,
+  onSessionExpired,
 }: {
   embedded?: boolean;
-  onOpen?: () => void;
+  activities: StudentActivity[];
+  courses: LearningCourse[];
+  refresh: () => void;
+  onSessionExpired: () => void;
 }) {
   const [filter, setFilter] = useState("All");
-  const [selected, setSelected] = useState<(typeof activities)[0] | null>(null);
-  const [file, setFile] = useState("");
-  const [confirm, setConfirm] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [quiz, setQuiz] = useState(false);
-  const [question, setQuestion] = useState(0);
-  const [answer, setAnswer] = useState<number[]>([]);
-  const shown = activities.filter(
-    (a) => filter === "All" || a.type === filter || a.status === filter,
-  );
-  if (quiz)
-    return (
-      <div className={embedded ? "" : "page"}>
-        <div className="quiz-shell card">
-          <div className="quiz-head">
-            <div>
-              <span className="eyebrow">COMP 018 · ASSESSMENT</span>
-              <h1>Database Normalization Quiz</h1>
-              <p>20 questions · 30 minute time limit</p>
-            </div>
-            <div className="quiz-time">
-              <Clock3 size={18} />
-              <span>
-                Time remaining<strong>24:18</strong>
-              </span>
-            </div>
-          </div>
-          <Progress value={((question + 1) / 4) * 100} />
-          <div className="quiz-body">
-            <aside>
-              <span>QUESTIONS</span>
-              <div>
-                {[0, 1, 2, 3].map((n) => (
-                  <button
-                    className={`${question === n ? "active" : ""} ${answer[n] !== undefined ? "answered" : ""}`}
-                    onClick={() => setQuestion(n)}
-                    key={n}
-                  >
-                    {n + 1}
-                  </button>
-                ))}
-              </div>
-              <p>
-                <i /> Answered <i /> Current
-              </p>
-            </aside>
-            <main>
-              <span>QUESTION {question + 1} OF 4</span>
-              <h2>
-                {
-                  [
-                    "Which normal form removes partial dependencies?",
-                    "What uniquely identifies each row in a relation?",
-                    "A transitive dependency is removed in which normal form?",
-                    "Which operation combines rows from related tables?",
-                  ][question]
-                }
-              </h2>
-              {[
-                "First normal form|Second normal form|Third normal form|Boyce-Codd normal form",
-                "Foreign key|Primary key|Composite view|Index",
-                "1NF|2NF|3NF|4NF",
-                "Select|Join|Update|Group",
-              ].map(
-                (set, i) =>
-                  i === question &&
-                  set.split("|").map((option, n) => (
-                    <button
-                      className={`answer-option ${answer[question] === n ? "selected" : ""}`}
-                      onClick={() => {
-                        const next = [...answer];
-                        next[question] = n;
-                        setAnswer(next);
-                      }}
-                      key={option}
-                    >
-                      <span>{String.fromCharCode(65 + n)}</span>
-                      {option}
-                      <i>{answer[question] === n && <Check size={15} />}</i>
-                    </button>
-                  )),
-              )}
-              <div className="quiz-actions">
-                <button
-                  className="btn secondary"
-                  onClick={() => setQuestion(Math.max(0, question - 1))}
-                  disabled={question === 0}
-                >
-                  <ChevronLeft size={17} /> Previous
-                </button>
-                {question < 3 ? (
-                  <button className="btn primary" onClick={() => setQuestion(question + 1)}>
-                    Next question <ChevronRight size={17} />
-                  </button>
-                ) : (
-                  <button
-                    className="btn primary"
-                    onClick={() => {
-                      setQuiz(false);
-                      setSubmitted(true);
-                    }}
-                  >
-                    Submit quiz
-                  </button>
-                )}
-              </div>
-            </main>
-          </div>
-        </div>
-      </div>
-    );
+  const [selectedId, setSelectedId] = useState("");
+  const selected = activities.find((item) => item.id === selectedId);
+  const shown = activities.filter((item) => filter === "All" || activityStatus(item) === filter);
+  const courseNames = new Map(courses.map((course) => [course.id, course.course_name]));
   if (selected)
     return (
-      <div className={embedded ? "" : "page"}>
-        <button className="back-link" onClick={() => setSelected(null)}>
-          <ArrowLeft size={16} /> Back to activities
+      <div className={embedded ? "embedded-page" : "page"}>
+        <button className="back-link" onClick={() => setSelectedId("")}>
+          <ArrowLeft size={17} /> Back to activities
         </button>
-        <div className="activity-detail-grid">
-          <main className="card activity-detail">
-            <div className="activity-title-row">
-              <div className="activity-type-icon">
-                <ClipboardCheck size={24} />
-              </div>
-              <div>
-                <span className="eyebrow">
-                  {selected.course} · {selected.type}
-                </span>
-                <h1>{selected.title}</h1>
-                <p>Posted by Prof. Carlo Inovero · May 20</p>
-              </div>
-            </div>
-            <div className="activity-facts">
-              <span>
-                <CalendarDays size={18} />
-                <small>Due date</small>
-                <strong>{selected.due}</strong>
-              </span>
-              <span>
-                <Star size={18} />
-                <small>Maximum points</small>
-                <strong>{selected.points} points</strong>
-              </span>
-              <span>
-                <FileText size={18} />
-                <small>Submission type</small>
-                <strong>File upload</strong>
-              </span>
-            </div>
-            <section>
-              <h2>Instructions</h2>
-              <p>
-                Use the provided customer dataset to demonstrate the data preparation techniques
-                discussed in Module 2. Document missing values, duplicate records, and
-                transformations in a concise report.
-              </p>
-              <ol>
-                <li>Download and inspect the attached dataset.</li>
-                <li>Clean the data using the techniques from the lecture.</li>
-                <li>Submit your notebook and a one-page summary as a single ZIP file.</li>
-              </ol>
-            </section>
-            <section>
-              <h2>Reference material</h2>
-              <div className="attachment">
-                <FileSpreadsheet size={20} />
-                <span>
-                  <strong>customer-dataset.xlsx</strong>
-                  <small>780 KB · Excel spreadsheet</small>
-                </span>
-                <button className="icon-btn">
-                  <Download size={18} />
-                </button>
-              </div>
-            </section>
-          </main>
-          <aside className="card submission-card">
-            <div className="section-head">
-              <div>
-                <h2>Your submission</h2>
-                <p>{submitted ? "Submitted successfully" : "Not yet submitted"}</p>
-              </div>
-              {submitted ? (
-                <Badge tone="submitted">Submitted</Badge>
-              ) : (
-                <Badge tone="pending">Pending</Badge>
-              )}
-            </div>
-            {submitted ? (
-              <div className="submission-success">
-                <div>
-                  <CheckCircle2 size={28} />
-                </div>
-                <h3>Work submitted</h3>
-                <p>May 25, 3:42 PM</p>
-                <div className="attachment">
-                  <File size={19} />
-                  <span>
-                    <strong>{file || "izy-delacruz-data-prep.zip"}</strong>
-                    <small>4.2 MB</small>
-                  </span>
-                </div>
-                <button className="btn secondary full">View submission</button>
-              </div>
-            ) : (
-              <>
-                <label className="upload-zone">
-                  <Upload size={26} />
-                  <strong>{file || "Upload your work"}</strong>
-                  <span>
-                    {file ? "File ready for submission" : "Drag and drop or browse your device"}
-                  </span>
-                  <small>ZIP, PDF, DOCX · Maximum 50 MB</small>
-                  <input type="file" onChange={(e) => setFile(e.target.files?.[0]?.name || "")} />
-                </label>
-                <label className="response-label">
-                  Submission note{" "}
-                  <textarea placeholder="Add an optional note for your instructor..." />
-                </label>
-                <button
-                  className="btn primary full"
-                  disabled={!file}
-                  onClick={() => setConfirm(true)}
-                >
-                  Submit activity <Send size={16} />
-                </button>
-                <p className="submission-note">
-                  <ShieldCheck size={14} /> You can replace your submission until the deadline.
-                </p>
-              </>
-            )}
-          </aside>
-        </div>
-        {confirm && (
-          <div className="modal-layer">
-            <div className="confirm-modal card">
-              <div className="confirm-icon">
-                <Send size={24} />
-              </div>
-              <h2>Submit your activity?</h2>
-              <p>
-                You’re about to submit <strong>{file}</strong>. You can still resubmit before the
-                deadline.
-              </p>
-              <div>
-                <button className="btn secondary" onClick={() => setConfirm(false)}>
-                  Review again
-                </button>
-                <button
-                  className="btn primary"
-                  onClick={() => {
-                    setConfirm(false);
-                    setSubmitted(true);
-                  }}
-                >
-                  Confirm submission
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        <ActivityDetails
+          key={selected.id}
+          activity={selected}
+          courseName={courseNames.get(selected.course_id)}
+          refresh={refresh}
+          onSessionExpired={onSessionExpired}
+        />
       </div>
     );
   return (
@@ -297,73 +45,151 @@ export function ActivitiesPage({
       <div className="page-heading">
         <div>
           <span className="eyebrow">ACADEMICS</span>
-          <h1>{embedded ? "Course Activities" : "Activities & Assessments"}</h1>
-          <p>Track requirements and submit your academic work on time.</p>
+          {embedded ? <h2>Course activities</h2> : <h1>Activities &amp; Assessments</h1>}
+          <p>View instructions, submit your work, and see activity results.</p>
         </div>
-        <button className="btn secondary" onClick={() => setQuiz(true)}>
-          <Play size={17} /> Try sample quiz
-        </button>
-      </div>
-      <div className="activity-summary">
-        {[
-          ["Pending", "4", "Due this week"],
-          ["Submitted", "12", "Awaiting review"],
-          ["Graded", "16", "View feedback"],
-          ["Overdue", "0", "You’re on track"],
-        ].map(([a, b, c]) => (
-          <div className="card" key={a}>
-            <span>{a}</span>
-            <strong>{b}</strong>
-            <small>{c}</small>
-          </div>
-        ))}
       </div>
       <div className="filter-bar">
-        {["All", "Assignment", "Quiz", "Project", "Submitted", "Pending", "Overdue"].map((t) => (
-          <button className={filter === t ? "active" : ""} onClick={() => setFilter(t)} key={t}>
-            {t}
+        {filters.map((value) => (
+          <button
+            className={filter === value ? "active" : ""}
+            key={value}
+            onClick={() => setFilter(value)}
+          >
+            {value}
           </button>
         ))}
       </div>
-      <div className="activity-list card">
-        <div className="table-head">
-          <span>ACTIVITY</span>
-          <span>DUE DATE</span>
-          <span>POINTS</span>
-          <span>STATUS</span>
-          <span />
-        </div>
-        {shown.map((a) => (
-          <div className="activity-row" key={a.title}>
+      <section className="card learning-panel">
+        {shown.map((item) => (
+          <div className="learning-row" key={item.id}>
             <div>
-              <div className={`activity-mini ${a.type.toLowerCase()}`}>
-                <ClipboardCheck size={18} />
-              </div>
-              <span>
-                <strong>{a.title}</strong>
-                <small>
-                  {a.course} · {a.type}
-                </small>
-              </span>
+              <strong>{item.title}</strong>
+              <p>
+                {courseNames.get(item.course_id)} · {item.max_points} points ·{" "}
+                {academicDate(item.due_date)}
+              </p>
             </div>
-            <span>
-              <strong>{a.due.split(",")[0]}</strong>
-              <small>{a.due.includes(",") ? a.due.split(",").slice(1).join(",") : ""}</small>
-            </span>
-            <strong>{a.points} pts</strong>
-            <Badge tone={a.status.toLowerCase()}>{a.status}</Badge>
-            <button
-              className="btn tertiary small"
-              onClick={() => {
-                setSelected(a);
-                onOpen?.();
-              }}
-            >
-              View <ChevronRight size={15} />
+            <Badge tone={item.submission_id ? "submitted" : "neutral"}>
+              {activityStatus(item)}
+            </Badge>
+            <button className="btn tertiary small" onClick={() => setSelectedId(item.id)}>
+              Open activity
             </button>
           </div>
         ))}
-      </div>
+        {!shown.length && <p>No matching activities.</p>}
+      </section>
+    </div>
+  );
+}
+
+function ActivityDetails({
+  activity,
+  courseName,
+  refresh,
+  onSessionExpired,
+}: {
+  activity: StudentActivity;
+  courseName?: string;
+  refresh: () => void;
+  onSessionExpired: () => void;
+}) {
+  const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const status = activityStatus(activity);
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!window.confirm("Submit this response? Each activity accepts one submission.")) return;
+    const response = new FormData(event.currentTarget).get("response")?.toString().trim();
+    if (!response) {
+      setError("Enter your response before submitting.");
+      return;
+    }
+    setSaving(true);
+    setError("");
+    try {
+      await api(`/learning/courses/${activity.course_id}/activities/${activity.id}/submit`, {
+        method: "POST",
+        body: { response },
+      });
+      setSaved(true);
+      refresh();
+    } catch (failure) {
+      if (failure instanceof ApiError && failure.status === 401) onSessionExpired();
+      else setError(errorMessage(failure));
+      refresh();
+    } finally {
+      setSaving(false);
+    }
+  }
+  return (
+    <div className="activity-detail-grid">
+      <section className="card activity-detail">
+        <div className="activity-title-row">
+          <div className="activity-type-icon">
+            <ClipboardCheck size={23} />
+          </div>
+          <div>
+            <span className="eyebrow">{courseName}</span>
+            <h2>{activity.title}</h2>
+          </div>
+        </div>
+        <div className="learning-row">
+          <span>Due {academicDate(activity.due_date)}</span>
+          <span>{activity.max_points} points</span>
+          <Badge tone={activity.submission_id ? "submitted" : "neutral"}>
+            {saved && !activity.submission_id ? "Submitted" : status}
+          </Badge>
+        </div>
+        <h3>Instructions</h3>
+        <p className="learning-text">{activity.description}</p>
+        {activity.material_url && (
+          <a
+            className="btn tertiary small"
+            href={activity.material_url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open learning material <ExternalLink size={15} />
+          </a>
+        )}
+      </section>
+      <aside className="card submission-card">
+        <h3>Your submission</h3>
+        {saved && <p role="status">Response submitted.</p>}
+        {error && <p role="alert">{error}</p>}
+        {activity.submission_id ? (
+          <>
+            <p>Submitted {academicDate(activity.submitted_at)}</p>
+            <p className="learning-text">{activity.submission_content}</p>
+            {activity.score !== null && (
+              <>
+                <strong>
+                  {activity.score}/{activity.max_points}
+                </strong>
+                <p className="learning-text">{activity.feedback}</p>
+                <p>Graded {academicDate(activity.graded_at)}</p>
+              </>
+            )}
+          </>
+        ) : !saved && status === "Pending" ? (
+          <form className="learning-form" onSubmit={submit}>
+            <label>
+              Response
+              <textarea name="response" required maxLength={10000} rows={5} />
+            </label>
+            <button className="btn primary full" disabled={saving}>
+              <Send size={16} /> {saving ? "Submitting…" : "Submit response"}
+            </button>
+          </form>
+        ) : (
+          !saved && (
+            <p>{status === "Overdue" ? "The deadline has passed." : "This activity is closed."}</p>
+          )
+        )}
+      </aside>
     </div>
   );
 }

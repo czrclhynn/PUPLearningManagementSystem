@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { CalendarDays, Grid2X2, List, Search } from "lucide-react";
-import { courses } from "./mock";
+import { Grid2X2, List, Search } from "lucide-react";
 import { CourseCard } from "./CourseCard";
+import type { StudentLearning } from "../learning/types";
 
-export function CoursesPage({ openCourse }: { openCourse: () => void }) {
+export function CoursesPage({
+  learning,
+  openCourse,
+}: {
+  learning: StudentLearning;
+  openCourse: (id: string) => void;
+}) {
   const [search, setSearch] = useState("");
-  const [tab, setTab] = useState("All Courses");
   const [grid, setGrid] = useState(true);
-  const filtered = courses.filter(
-    (c) =>
-      c.title.toLowerCase().includes(search.toLowerCase()) ||
-      c.code.toLowerCase().includes(search.toLowerCase()),
+  const query = search.trim().toLowerCase();
+  const filtered = learning.courses.filter((course) =>
+    `${course.course_name} ${course.course_code}`.toLowerCase().includes(query),
   );
   return (
     <div className="page">
@@ -20,58 +24,58 @@ export function CoursesPage({ openCourse }: { openCourse: () => void }) {
           <h1>My Courses</h1>
           <p>Access your enrolled subjects, materials, and academic activities.</p>
         </div>
-        <div className="term-card">
-          <CalendarDays size={20} />
-          <div>
-            <span>Current term</span>
-            <strong>2nd Semester, A.Y. 2024–2025</strong>
-          </div>
-        </div>
       </div>
       <div className="toolbar card">
         <div className="search-field">
           <Search size={18} />
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(event) => setSearch(event.target.value)}
+            aria-label="Search courses"
             placeholder="Search by course or code..."
           />
         </div>
-        <select aria-label="Semester">
-          <option>Second Semester</option>
-          <option>First Semester</option>
-        </select>
-        <select aria-label="Academic year">
-          <option>A.Y. 2024–2025</option>
-          <option>A.Y. 2023–2024</option>
-        </select>
         <div className="view-toggle">
-          <button className={grid ? "active" : ""} onClick={() => setGrid(true)}>
+          <button
+            className={grid ? "active" : ""}
+            onClick={() => setGrid(true)}
+            aria-label="Grid view"
+          >
             <Grid2X2 size={17} />
           </button>
-          <button className={!grid ? "active" : ""} onClick={() => setGrid(false)}>
+          <button
+            className={!grid ? "active" : ""}
+            onClick={() => setGrid(false)}
+            aria-label="List view"
+          >
             <List size={18} />
           </button>
         </div>
       </div>
       <div className="tabs">
-        {["All Courses", "In Progress", "Completed"].map((t) => (
-          <button className={tab === t ? "active" : ""} onClick={() => setTab(t)} key={t}>
-            {t}
-            {t === "All Courses" && <span>6</span>}
-          </button>
-        ))}
+        <button className="active">
+          Enrolled courses <span>{learning.courses.length}</span>
+        </button>
       </div>
       <div className={`course-grid ${grid ? "" : "list-view"}`}>
         {filtered.map((course) => (
-          <CourseCard key={course.code} course={course} onOpen={openCourse} />
+          <CourseCard
+            key={course.id}
+            course={course}
+            activities={learning.activities.filter((item) => item.course_id === course.id)}
+            onOpen={() => openCourse(course.id)}
+          />
         ))}
       </div>
       {!filtered.length && (
         <div className="empty-state">
           <Search size={30} />
           <h3>No courses found</h3>
-          <p>Try another course title or code.</p>
+          <p>
+            {query
+              ? "Try another course title or code."
+              : "Your courses will appear when an administrator enrolls you."}
+          </p>
         </div>
       )}
     </div>

@@ -1,0 +1,77 @@
+.learning-workspace {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+.learning-panel {
+  padding: 20px;
+}
+.learning-panel h3,
+.learning-panel p,
+.learning-review p,
+.submission-card p {
+  margin: 6px 0;
+}
+.learning-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.learning-row > div:first-child {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.learning-row p {
+  color: var(--muted);
+}
+.learning-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.learning-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.learning-review {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.learning-review summary {
+  cursor: pointer;
+}
+.learning-field,
+.learning-form,
+.learning-form label {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+.learning-form label {
+  margin: 0;
+}
+.learning-field select,
+.learning-form input,
+.learning-form textarea {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 8px 10px;
+}
+.learning-form input[type="number"] {
+  max-width: 10rem;
+}
+.learning-form textarea {
+  resize: vertical;
+}
+.instructor-approvals {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
