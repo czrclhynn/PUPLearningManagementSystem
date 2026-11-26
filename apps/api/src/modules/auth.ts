@@ -81,11 +81,9 @@ export function registerAuth(app: FastifyInstance, pool: Pool, secure: boolean) 
          ON CONFLICT (email) DO NOTHING`,
         [name.trim(), email.toLowerCase(), await hashPassword(password)],
       );
-      return reply
-        .code(202)
-        .send({
-          message: "If this email is available, your request will appear in administrator review.",
-        });
+      return reply.code(202).send({
+        message: "If this email is available, your request will appear in administrator review.",
+      });
     },
   );
 
