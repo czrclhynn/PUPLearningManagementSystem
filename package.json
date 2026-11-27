@@ -20,6 +20,8 @@
     "check": "corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build && corepack pnpm build:api"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.2",
     "lucide-react": "^1.70.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
